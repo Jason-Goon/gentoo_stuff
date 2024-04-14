@@ -84,7 +84,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers.d/wheel
 chmod 0440 /etc/sudoers.d/wheel
-Ensure no duplicate sudoers entries
 sed -i '/^%wheel ALL=(ALL) ALL/d' /etc/sudoers
 
 
