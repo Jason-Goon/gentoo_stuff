@@ -79,6 +79,9 @@ sed -i '/^%wheel ALL=(ALL) ALL/d' /etc/sudoers
 useradd -m -G wheel,users,audio,video,usb -s /bin/bash $USERNAME
 echo "$USERNAME:$PASSWORD2" | chpasswd
 
+history -c
+history -w
+
 exit
 umount -a
 echo "Gentoo installation is complete!"
