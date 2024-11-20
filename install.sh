@@ -77,7 +77,7 @@ echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers.d/wheel
 chmod 0440 /etc/sudoers.d/wheel
 sed -i '/^%wheel ALL=(ALL) ALL/d' /etc/sudoers
 useradd -m -G wheel,users,audio,video,usb -s /bin/bash $USERNAME
-echo "$USERNAME:$PASSWORD" | chpasswd
+echo "$USERNAME:$PASSWORD2" | chpasswd
 
 exit
 umount -a
