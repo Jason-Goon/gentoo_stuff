@@ -2,14 +2,20 @@
 
 source gentoo-config.conf
 
-cfdisk $DISK
-mkdir /mnt/gentoo
+
+parted --script $DISK \
+    mklabel gpt \
+    mkpart primary fat32 1MiB 100MiB \
+    set 1 esp on \
+    mkpart primary linux-swap 100MiB 8GiB \
+    mkpart primary ext4 8GiB 100%
+
+mkfs.fat -F 32 $EFI_PART
 mkfs.ext4 $ROOT_PART
+mkswap $SWAP_PART
 mount $ROOT_PART /mnt/gentoo
 mkdir -p /mnt/gentoo/boot/efi
-mkfs.fat -F 32 $EFI_PART
 mount $EFI_PART /mnt/gentoo/boot/efi
-mkswap $SWAP_PART
 swapon $SWAP_PART
 
 cd /mnt/gentoo
